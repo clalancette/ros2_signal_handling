@@ -19,13 +19,22 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
-add_executable(ros2_signal_handling src/ros2_signal_handling.cpp)
-ament_target_dependencies(ros2_signal_handling
+add_executable(ros2_process_data src/ros2_process_data.cpp)
+ament_target_dependencies(ros2_process_data
   rclcpp
 )
 
-install(TARGETS ros2_signal_handling
+add_executable(ros2_generate_data src/ros2_generate_data.cpp)
+ament_target_dependencies(ros2_generate_data
+  rclcpp
+)
+
+install(TARGETS ros2_process_data ros2_generate_data
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
